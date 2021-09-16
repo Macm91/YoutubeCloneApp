@@ -16,7 +16,7 @@ class CreateComment extends Component{
    }
 
    handleSubmit = (event) => {
-       this.props.createSong(this.state);
+       this.props.createComment(this.state);
    }
 
 
