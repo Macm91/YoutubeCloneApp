@@ -1,11 +1,14 @@
 import React, { Component } from "react";
-import './CreateForm.css'
+// import './CreateForm.css'
 
 class CreateComment extends Component{
     constructor (props){
         super(props);
         this.state = {
-            comment: "",
+            video:'ZJ2tcji7O64',
+            comment: '',
+            likes: 0,
+            dislikes: 0
         }
     }
 
@@ -24,8 +27,8 @@ class CreateComment extends Component{
        return ( 
            <footer>
            <form onSubmit= {this.handleSubmit}>
-               <label>Song Title</label>
-               <input name="newComment" onChange={this.handleChange} value={this.state.comment} placeholder="Comment"/>
+               <label></label>
+               <input name="comment" onChange={this.handleChange} placeholder="Comment"/>
                <button type="submit">Create Comment</button>
                {/* could also potentially add a button here to cancel & empty input */}
            </form>
