@@ -15,6 +15,7 @@ class App extends Component{
             
         }
     }
+
     componentDidMount(){
         // To DO: input the get all videos function here. 
         // This can be filtered in the display via the search bar. 
@@ -22,27 +23,10 @@ class App extends Component{
     }
 
 // Done
-    async getComments (){
-        try{
-            let response = await axios.get('http://127.0.0.1:8000/comment/');
-            this.setState({
-                comments: response.data
-            });
-    }
-        catch(ex) {
-            console.log ('Error in API Call!')
-        }
-    }
-
-
-// Done
-    
-    
     deleteComment=(comment)=>{
         axios.delete('http://127.0.0.1:8000/music/'+comment.id+'/')
         this.getSongs()
     }
-
    
 // Done
     handleChange= (event) => {
