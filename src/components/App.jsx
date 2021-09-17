@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import './App.css'
 import axios from "axios";
-import CreateComment from "./CreateComment/CreateComment";
+// import CreateComment from "./CreateComment/CreateComment";
 import VideoViewer from "./VideoViewer/VideoViewer";
 
 
