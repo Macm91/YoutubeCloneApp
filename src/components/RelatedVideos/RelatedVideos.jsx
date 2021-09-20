@@ -20,6 +20,10 @@ const RelatedVideos = (props) =>{
         if (videoData !== "") setShowTable(true)
     },[videoData])
 
+    async function renderNew(vid){
+        await props.newLoad(vid.videoId)
+    }
+
     return (
         <div>
             <button 
@@ -28,7 +32,7 @@ const RelatedVideos = (props) =>{
                 Related
             </button>
                 {showTable &&
-                    videoData.map((element) => <ul><img src={element.snippet.thumbnails.default.url} alt="Thumbnail" width="120" height="90"/><h3>{}</h3></ul>)
+                    videoData.map((element) => <ul><img onClick = {() => renderNew(element.id)}src={element.snippet.thumbnails.default.url} alt="Thumbnail" width="120" height="90"/><h5>{element.snippet.title}</h5></ul>)
                         // mapp data into table.
                 }
         </div>
