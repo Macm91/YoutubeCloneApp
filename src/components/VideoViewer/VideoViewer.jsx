@@ -48,14 +48,14 @@ componentDidMount(){
     }
 } 
 
-    // async getTitleAndDescription(videoToPlay){
-    //     let response
-    //     response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${this.state.video}&key=AIzaSyBkY3kg-L1IHpD3Wy285XtpITZBj5oMONQ
-    //     &part=snippet,statistics`).then(response =>  { response = (response.data.items)})
-    //     return(
-    //         <p>{response.snippet.title}</p>
-    //     )
-    // }
+    async getTitleAndDescription(videoToPlay){
+        let response
+        response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${this.state.video}&key=AIzaSyBkY3kg-L1IHpD3Wy285XtpITZBj5oMONQ
+        &part=snippet,statistics`).then(response =>  { response = (response.data.items)})
+        return(
+            <p>{response.snippet.title}</p>
+        )
+    }
 
 
     loadNewVid = (vid) =>{
