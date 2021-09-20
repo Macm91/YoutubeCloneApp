@@ -1,7 +1,6 @@
-import { render } from "@testing-library/react";
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import VideoViewer from "../VideoViewer/VideoViewer";
+
 
 // const = Styling issuse
 
@@ -18,7 +17,7 @@ const RelatedVideos = (props) =>{
 
     useEffect(() => {
         // Trigger rerender
-        if (videoData != "") setShowTable(true)
+        if (videoData !== "") setShowTable(true)
     },[videoData])
 
     return (

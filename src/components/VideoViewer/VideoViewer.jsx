@@ -48,10 +48,7 @@ componentDidMount(){
     }
 } 
 
-    clickMe = (e) => {
-        console.log(e)
-        console.log('ya done clicked on me')
-    }
+  
     
 
     createComment=(newComment)=>{axios.post('http://127.0.0.1:8000/comment/',newComment)}
@@ -61,12 +58,14 @@ componentDidMount(){
         return ( 
             <div>
                 <TitleBar/>
-            <div onClick={(e) => this.clickMe(e)}>
+            <div>
                 <iframe title= "videoViewer" id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.video}`}
                 frameborder="0"></iframe>
                 <CreateComment createComment = {this.createComment}/>
-                <DisplayComments video={this.state.video}/>        
+                <DisplayComments video={this.state.video}/>  
+                <RelatedVideos video = {this.state.video} newLoad = {this.loadNewVid}/>
+
             </div>
            
             </div>
