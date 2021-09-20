@@ -2,6 +2,7 @@ import React, { Component} from "react";
 import axios from "axios";
 import CreateComment from "../CreateComment/CreateComment";
 import DisplayComments from "../DisplayComments/DisplayComments";
+import TitleBar from "../TitleBar/TitleBar";
 
 
 class VideoViewer extends Component {
@@ -15,6 +16,11 @@ class VideoViewer extends Component {
             dislikes: 0
          }
     }
+
+
+componentDidMount(){
+    this.getComments();
+}
 
     async getComments (){
         try{
@@ -31,7 +37,7 @@ class VideoViewer extends Component {
 
     async filterComments(video){
     try{
-        let response = await axios.get(`http://127.0.0.1:8000/comment/${video}/video`);
+        let response = await axios.get(`http://127.0.0.1:8000/comment/ZJ2tcji7O64/video`);
         this.setState({
             comments: response.data
         });
@@ -52,13 +58,15 @@ class VideoViewer extends Component {
     render(){ 
         return ( 
             <div>
+                <TitleBar/>
             <div onClick={(e) => this.clickMe(e)}>
                 <iframe title= "videoViewer" id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.video}`}
                 frameborder="0"></iframe>
                 <CreateComment createComment = {this.createComment}/>
-                <DisplayComments comments= {this.comments} video={this.video} filterComments={this.filterComments}/>        
+                <DisplayComments video={this.state.video}/>        
             </div>
+           
             </div>
         )
     }
