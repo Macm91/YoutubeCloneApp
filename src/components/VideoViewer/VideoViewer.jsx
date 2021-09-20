@@ -1,6 +1,7 @@
 import React, {useState, useEffect, Component} from "react";
 import axios from "axios";
 import CreateComment from "../CreateComment/CreateComment";
+import RelatedVideos from "../RelatedVideos/RelatedVideos";
 
 
 class VideoViewer extends Component {
@@ -18,19 +19,22 @@ class VideoViewer extends Component {
         console.log(e)
         console.log('ya done clicked on me')
     }
+    
 
     createComment=(newComment)=>{axios.post('http://127.0.0.1:8000/comment/',newComment)}
 
 
     render() { 
         return ( 
+            <React.Fragment>
             <div onClick={(e) => this.clickMe(e)}>
                 <iframe id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.video}`}
                 frameborder="0"></iframe>
                 <CreateComment createComment = {this.createComment}/>
             </div>
-       
+            <RelatedVideos video = {this.state.video} />
+            </React.Fragment>
          );
     }
 }
