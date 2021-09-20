@@ -3,7 +3,7 @@ import './App.css'
 import axios from "axios";
 // import CreateComment from "./CreateComment/CreateComment";
 import VideoViewer from "./VideoViewer/VideoViewer";
-
+import TitleBar from "./TitleBar/TitleBar";
 
 class App extends Component{
     constructor(props){
@@ -40,6 +40,7 @@ class App extends Component{
     }
 
 
+
 // ###############
 // TODO: Need to create/implement from the Youtube API a filter function that will fitler by video 
 
@@ -50,6 +51,7 @@ class App extends Component{
     render (){
         return(
             <div className="container-fluid">
+                
                 <VideoViewer/>     
             </div>
         )

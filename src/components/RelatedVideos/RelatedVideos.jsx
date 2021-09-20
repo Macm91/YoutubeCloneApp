@@ -11,7 +11,7 @@ const RelatedVideos = (props) =>{
 
     async function handleClick(props){
         let response
-        response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.video}&type=video&key=AIzaSyBkY3kg-L1IHpD3Wy285XtpITZBj5oMONQ&part=snippet&maxResults=5`)
+        response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.video}&type=video&key=AIzaSyByYNis8DwlkG0UZrKcxhZFdjJTZ4HTEj0&part=snippet&maxResults=5`)
         .then(response =>  { setVideoData(response.data.items)})
     }
 
@@ -19,6 +19,7 @@ const RelatedVideos = (props) =>{
         // Trigger rerender
         if (videoData !== "") setShowTable(true)
     },[videoData])
+
 
     async function renderNew(vid){
         await props.newLoad(vid.videoId)
