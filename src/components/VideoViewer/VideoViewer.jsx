@@ -72,7 +72,7 @@ componentDidMount(){
         return ( 
             <div>
                 <TitleBar/>
-            <div onClick={(e) => this.clickMe(e)}>
+            <div>
                 <iframe title= "videoViewer" id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.video}`}
                 frameborder="0"></iframe>
