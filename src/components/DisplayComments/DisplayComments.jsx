@@ -1,31 +1,39 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
+import axios from "axios";
 
 
-    // filters to display only comments with the exact videoID    
-// const DisplayComments =(props)=> {
-//     const [comments, setComments] = useState([props.comments]);
-//     const [video, setVideo]= useState ("");
+
+
+const DisplayComments=(props)=>{
+    const [comments, setComments] = useState(['no Comments'])
+
+
+   
+    function filterComment(video){
+        axios.get(`http://127.0.0.1:8000/comment/${video}/video/`).then(response=>{setComments(response.data)})
+    }
+
+useEffect (()=>{
+    filterComment(props.video);
+}, [props])
+
+    return(
+        <div>
+           
+                    <div>
+                        {
+                        comments.map((val, index)=> <p key={index} className= "commentDisplay"> {val.comment} </p>)
+                        }   
+                    </div>
+                
+        </div>
+        
+   
+    )
     
-//     setVideo(props.video);
-//     props.filterComments(video);
-      
-
-//     async function filterComments(video){
-//         try{
-//             let response = await axios.get(`http://127.0.0.1:8000/comment/${video}/video`);
-//             this.setState({
-//                 comments: response.data
-//         });
     
-//     return(
-//         <div>
-//             {console.log("Comments State: ",comments)}
-//             {comments.map((comment, index) => 
-//                 <p key= "index" className= "individualComment">{comment.comment}</p>)}
-//         </div>
-//       )  
-//     }
-//     }
-    
+}
 
-// export default DisplayComments
+export default DisplayComments
+
+

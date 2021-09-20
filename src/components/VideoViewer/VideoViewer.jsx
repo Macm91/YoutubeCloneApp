@@ -3,6 +3,7 @@ import axios from "axios";
 import CreateComment from "../CreateComment/CreateComment";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import DisplayComments from "../DisplayComments/DisplayComments";
+import TitleBar from "../TitleBar/TitleBar";
 
 
 class VideoViewer extends Component {
@@ -17,6 +18,11 @@ class VideoViewer extends Component {
          }
     }
 
+
+componentDidMount(){
+    this.getComments();
+}
+
     async getComments (){
         try{
             let response = await axios.get('http://127.0.0.1:8000/comment/');
@@ -30,17 +36,17 @@ class VideoViewer extends Component {
     } 
 
 
-//     async filterComments(video){
-//         try{
-//             let response = await axios.get(`http://127.0.0.1:8000/comment/${video}/video`);
-//             this.setState({
-//                 comments: response.data
-//             });
-//     }
-//         catch(ex) {
-//             console.log ('Error in API Call!');
-//         }
-// } 
+    async filterComments(video){
+    try{
+        let response = await axios.get(`http://127.0.0.1:8000/comment/ZJ2tcji7O64/video`);
+        this.setState({
+            comments: response.data
+        });
+}
+    catch(ex) {
+        console.log ('Error in API Call!');
+    }
+} 
 
     // async getTitleAndDescription(videoToPlay){
     //     let response
@@ -64,17 +70,19 @@ class VideoViewer extends Component {
 
     render(){ 
         return ( 
-            <React.Fragment>
+            <div>
+                <TitleBar/>
             <div onClick={(e) => this.clickMe(e)}>
                 <iframe title= "videoViewer" id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.video}`}
                 frameborder="0"></iframe>
                 <CreateComment createComment = {this.createComment}/>
-                {/* <DisplayComments comments= {this.state,comments} video={this.state.video} filterComments={this.filterComments}/>         */}
+                <DisplayComments video={this.state.video}/>  
+                <RelatedVideos video = {this.state.video} newLoad = {this.loadNewVid}/>      
             </div>
-            <RelatedVideos video = {this.state.video} newLoad = {this.loadNewVid}/>
-            </React.Fragment>
-         );
+           
+            </div>
+        )
     }
 }
  
