@@ -1,6 +1,7 @@
 import React, { Component} from "react";
 import axios from "axios";
 import CreateComment from "../CreateComment/CreateComment";
+import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import DisplayComments from "../DisplayComments/DisplayComments";
 import TitleBar from "../TitleBar/TitleBar";
 
@@ -51,6 +52,7 @@ componentDidMount(){
         console.log(e)
         console.log('ya done clicked on me')
     }
+    
 
     createComment=(newComment)=>{axios.post('http://127.0.0.1:8000/comment/',newComment)}
 
