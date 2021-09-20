@@ -11,7 +11,7 @@ class VideoViewer extends Component {
         super(props);
         this.state = { 
             comments: [],
-            video:'ZJ2tcji7O64',
+            video:'pfzx8CwndSE',
             comment: '',
             likes: 0,
             dislikes: 0
@@ -71,7 +71,7 @@ componentDidMount(){
     render(){ 
         return ( 
             <div>
-                <TitleBar/>
+                <TitleBar loadSearch = {this.loadSearch}/>
             <div>
                 <iframe title= "videoViewer" id="ytplayer" type="text/html" width="640" height="360"
                 src={`https://www.youtube.com/embed/${this.state.video}`}

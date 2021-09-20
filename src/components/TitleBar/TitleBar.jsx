@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
 import './TitleBar.css';
 // import SearchResult from "../SearchResults/SearchResults";
@@ -7,19 +7,27 @@ import './TitleBar.css';
 const TitleBar =()=>{
     const [videoData, setVideoData] = useState("");
     const [search, setSearch] = useState ('');
+    const [showTable, setShowTable] = useState(false)
 
     async function handleClick(question){
-        debugger
         let response
-        response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${question}&key=AIzaSyBkY3kg-L1IHpD3Wy285XtpITZBj5oMONQ&maxResults=25`)
+        response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${question}&type=video&key=AIzaSyBkY3kg-L1IHpD3Wy285XtpITZBj5oMONQ`)
         .then(response =>  { setVideoData(response.data.items)})
-        console.log(videoData);
+        
         // pass the props videodata in to the function that displays the videos 
     }
 
+    
+
     const handleSubmit = (event) => {
+        event.preventDefault()
         handleClick(search);
     }
+
+    useEffect(() => {
+        // Trigger rerender
+        if (videoData !== "") setShowTable(true)
+    },[videoData])
 
 
 return(
@@ -33,6 +41,11 @@ return(
                     <input name="search" placeholder="search..." onChange={event => {setSearch(event.target.value)}}/>
                     <button type="submit"> Search</button>
                    </form>
+                    
+                   {showTable &&
+                    videoData.map((element) => <ul><img src={element.snippet.thumbnails.default.url} alt="Thumbnail" width="120" height="90"/><h5>{element.snippet.title}</h5></ul>)
+                        // mapp data into table.
+                }
 
                 </header>
                 </div>
