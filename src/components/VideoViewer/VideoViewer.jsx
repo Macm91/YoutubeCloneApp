@@ -12,7 +12,7 @@ class VideoViewer extends Component {
         super(props);
         this.state = { 
             comments: [],
-            video:'ZJ2tcji7O64',
+            video:'pfzx8CwndSE',
             comment: '',
             likes: 0,
             dislikes: 0,
@@ -27,7 +27,20 @@ class VideoViewer extends Component {
         this.titleAndDescription()
     }
 
-    async filterComments(){
+    // async getComments (){
+    //     try{
+    //         let response = await axios.get('http://127.0.0.1:8000/comment/');
+    //         this.setState({
+    //             comments: response.data
+    //         });
+    // }
+    //     catch(ex) {
+    //         console.log ('Error in API Call!');
+    //     }
+    // } 
+
+
+    async filterComments(video){
     try{
         let response = await axios.get(`http://127.0.0.1:8000/comment/${this.state.video}/video`);
         this.setState({
@@ -68,6 +81,7 @@ class VideoViewer extends Component {
                 src={`https://www.youtube.com/embed/${this.state.video}`}
                 frameborder="0"></iframe>
                 <h4>{this.state.title}</h4><br /><p>{this.state.description}</p>
+                <h3>Comments</h3><hr />
                 <CreateComment createComment = {this.createComment} video={this.state.video}/>
                 <DisplayComments video={this.state.video}/>  
                 <RelatedVideos video = {this.state.video} newLoad = {this.loadNewVid}/>      
