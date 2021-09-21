@@ -19,7 +19,7 @@ const RelatedVideos = (props) =>{
         // Trigger rerender
         if (videoData !== "") setShowTable(true)
     },[videoData])
-
+    
 
     async function renderNew(vid){
         await props.newLoad(vid.videoId)
