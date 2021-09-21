@@ -55,8 +55,8 @@ class VideoViewer extends Component {
     loadNewVid = (vid) =>{
         this.setState({
             video: vid
-        })
-        this.titleAndDescription()
+        }, () => this.titleAndDescription())
+        
     }
     async titleAndDescription(){
         let response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${this.state.video}&key=AIzaSyByYNis8DwlkG0UZrKcxhZFdjJTZ4HTEj0&part=snippet,statistics`)
