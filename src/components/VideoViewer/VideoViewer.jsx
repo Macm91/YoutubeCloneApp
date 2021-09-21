@@ -4,7 +4,7 @@ import CreateComment from "../CreateComment/CreateComment";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import DisplayComments from "../DisplayComments/DisplayComments";
 import TitleBar from "../TitleBar/TitleBar";
-// import VideoTitleDescription from "../VideoTitleDescription/VideoTitleDescription";
+
 
 
 class VideoViewer extends Component {
