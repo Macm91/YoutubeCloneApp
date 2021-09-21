@@ -4,25 +4,52 @@ import axios from "axios";
 
 
 
+
 const DisplayComments=(props)=>{
     const [comments, setComments] = useState(['no Comments'])
-    function filterComment(vid){
-        axios.get(`http://127.0.0.1:8000/comment/${vid}/video/`).then(response=>{setComments(response.data)})
+    const [comm, setComm] = useState([])
+
+    function filterComment(video){
+        axios.get(`http://127.0.0.1:8000/comment/${video}/video/`).then(response=>{setComments(response.data)})
     }
+
+    const updateComment = (comment) => { 
+        axios.put('http://127.0.0.1:8000/comment/'+comment.id+'/')
+    }
+
+    const increment = (val)=>{
+        debugger
+        setComm(
+            {
+                    id: val.id,
+                    video: val.video,
+                    comment: val.comment,
+                    likes: val.like,
+                    dislikes: val.dislikes
+            }
+        )
+        console.log("setComm")
+        console.log (comm)
+        updateComment(comm);
+    }
+
 
 useEffect (()=>{
     filterComment(props.video);
 }, [props])
 
     return(
-        <div>
+       
             <div>
                 {
-                comments.map((val, index)=> <p key={index} className= "commentDisplay"> {val.comment} </p>)
+                comments.map((val, index)=> 
+                <tr key={index} className= "commentDisplay"> 
+                <th>{val.comment} </th>
+                <th><form type="button" onClick={()=> increment(val)} >Like {val.likes}</form></th>
+
+                </tr>)
                 }   
             </div>
-                
-        </div>
         
    
     )

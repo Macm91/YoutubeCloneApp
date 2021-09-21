@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { useState } from "react/cjs/react.development";
-// import './CreateForm.css'
+
 
 
 const CreateComment=(props)=>{
@@ -33,7 +33,7 @@ const CreateComment=(props)=>{
 
 
    const handleSubmit = (event) => {
-       this.props.createComment(video, comment, likes, dislikes);
+       props.createComment(video, comment, likes, dislikes);
    }
 
 
@@ -42,7 +42,7 @@ const CreateComment=(props)=>{
            <footer>
            <form onSubmit= {handleSubmit}>
                <label></label>
-               <input name="comment" onChange={handleChange} placeholder="Comment"/>
+               <input name="comment" onChange={handleChange} placeholder="Comment"  value={comment}/>
                <button type="submit">Create Comment</button>
                {/* could also potentially add a button here to cancel & empty input */}
            </form>

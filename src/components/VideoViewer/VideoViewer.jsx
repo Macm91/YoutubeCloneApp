@@ -4,7 +4,7 @@ import CreateComment from "../CreateComment/CreateComment";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import DisplayComments from "../DisplayComments/DisplayComments";
 import TitleBar from "../TitleBar/TitleBar";
-// import VideoTitleDescription from "../VideoTitleDescription/VideoTitleDescription";
+
 
 
 class VideoViewer extends Component {
@@ -23,26 +23,13 @@ class VideoViewer extends Component {
 
 
     componentDidMount(){
-        this.getComments();
+        this.filterComments();
         this.titleAndDescription()
     }
 
-    async getComments (){
-        try{
-            let response = await axios.get('http://127.0.0.1:8000/comment/');
-            this.setState({
-                comments: response.data
-            });
-    }
-        catch(ex) {
-            console.log ('Error in API Call!');
-        }
-    } 
-
-
-    async filterComments(video){
+    async filterComments(){
     try{
-        let response = await axios.get(`http://127.0.0.1:8000/comment/ZJ2tcji7O64/video`);
+        let response = await axios.get(`http://127.0.0.1:8000/comment/${this.state.video}/video`);
         this.setState({
             comments: response.data
         });
