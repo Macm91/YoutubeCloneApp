@@ -1,40 +1,54 @@
 import React, { Component } from "react";
+import { useState } from "react/cjs/react.development";
 // import './CreateForm.css'
 
-class CreateComment extends Component{
-    constructor (props){
-        super(props);
-        this.state = {
-            video:'ZJ2tcji7O64',
-            comment: '',
-            likes: 0,
-            dislikes: 0
-        }
-    }
 
-    handleChange= (event) => {
-        this.setState ({
-            [event.target.name]: event.target.value,
-        });
+const CreateComment=(props)=>{
+    const [comment, setComment] = useState(['']);
+    const [video, setVideo] = useState (props.video);
+    const [likes, setLikes] = useState (0);
+    const [dislikes, setDislikes] = useState (0);
+
+
+    // class CreateComment extends Component{
+    //     constructor (props){
+    //         super(props);
+    //         this.state = {
+    //             video: this.props.video,
+    //             comment: '',
+    //             likes: 0,
+    //             dislikes: 0
+    //         }
+    //     }
+
+    const handleChange= (event) => {
+        setComment (event.target.value);
    }
 
-   handleSubmit = (event) => {
-       this.props.createComment(this.state);
+    //    handleChange= (event) => {
+    //     comment.setState ({
+    //         [event.target.name]: event.target.value,
+    //     });
+    // }
+
+
+   const handleSubmit = (event) => {
+       this.props.createComment(video, comment, likes, dislikes);
    }
 
 
-   render() { 
+    //    render() { 
        return ( 
            <footer>
-           <form onSubmit= {this.handleSubmit}>
+           <form onSubmit= {handleSubmit}>
                <label></label>
-               <input name="comment" onChange={this.handleChange} placeholder="Comment"/>
+               <input name="comment" onChange={handleChange} placeholder="Comment"/>
                <button type="submit">Create Comment</button>
                {/* could also potentially add a button here to cancel & empty input */}
            </form>
            </footer>
         );
-   }
+
 }
 
 export default CreateComment;

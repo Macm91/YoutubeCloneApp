@@ -81,7 +81,7 @@ class VideoViewer extends Component {
                 src={`https://www.youtube.com/embed/${this.state.video}`}
                 frameborder="0"></iframe>
                 <h4>{this.state.title}</h4><br /><p>{this.state.description}</p>
-                <CreateComment createComment = {this.createComment}/>
+                <CreateComment createComment = {this.createComment} video={this.state.video}/>
                 <DisplayComments video={this.state.video}/>  
                 <RelatedVideos video = {this.state.video} newLoad = {this.loadNewVid}/>      
             </div>

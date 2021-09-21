@@ -6,8 +6,8 @@ import axios from "axios";
 
 const DisplayComments=(props)=>{
     const [comments, setComments] = useState(['no Comments'])
-    function filterComment(video){
-        axios.get(`http://127.0.0.1:8000/comment/${video}/video/`).then(response=>{setComments(response.data)})
+    function filterComment(vid){
+        axios.get(`http://127.0.0.1:8000/comment/${vid}/video/`).then(response=>{setComments(response.data)})
     }
 
 useEffect (()=>{
