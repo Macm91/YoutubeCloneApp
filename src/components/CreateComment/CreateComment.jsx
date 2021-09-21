@@ -33,7 +33,9 @@ const CreateComment=(props)=>{
 
 
    const handleSubmit = (event) => {
-       this.props.createComment(video, comment, likes, dislikes);
+       let newComment = {video:video, comment:comment, likes:likes, dislikes:dislikes}
+       event.preventDefault()
+       props.createComment(newComment);
    }
 
 
