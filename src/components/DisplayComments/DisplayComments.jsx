@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import LikeComment from "../LikeComment/LikeComment";
 
 
 
@@ -17,17 +16,11 @@ useEffect (()=>{
 
     return(
         <div>
-           
-                    <div>
-                        {
-                        comments.map((val, index)=>
-                        <div key={index} className= "commentDisplay">
-                         <p > {val.comment} </p>
-                        <LikeComment comment= {val}/>
-
-                        </div>)
-                        }   
-                    </div>
+            <div>
+                {
+                comments.map((val, index)=> <p key={index} className= "commentDisplay"> {val.comment} </p>)
+                }   
+            </div>
                 
         </div>
         
@@ -38,5 +31,3 @@ useEffect (()=>{
 }
 
 export default DisplayComments
-
-

@@ -1,10 +1,10 @@
-import React, { Component, useEffect} from "react";
+import React, { Component} from "react";
 import axios from "axios";
 import CreateComment from "../CreateComment/CreateComment";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import DisplayComments from "../DisplayComments/DisplayComments";
 import TitleBar from "../TitleBar/TitleBar";
-import VideoTitleDescription from "../VideoTitleDescription/VideoTitleDescription";
+// import VideoTitleDescription from "../VideoTitleDescription/VideoTitleDescription";
 
 
 class VideoViewer extends Component {
@@ -12,7 +12,7 @@ class VideoViewer extends Component {
         super(props);
         this.state = { 
             comments: [],
-            video:'pfzx8CwndSE',
+            video:'ZJ2tcji7O64',
             comment: '',
             likes: 0,
             dislikes: 0,
