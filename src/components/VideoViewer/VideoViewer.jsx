@@ -20,7 +20,14 @@ class VideoViewer extends Component {
             description: ''
          }
     }
-
+    loadNewVid = (vid) =>{
+        this.setState({
+            video: vid
+        }, () => {
+            this.titleAndDescription()
+        })
+        
+    }
 
     componentDidMount(){
         this.getComments();
@@ -39,36 +46,26 @@ class VideoViewer extends Component {
         }
     } 
 
-
-    async filterComments(video){
-    try{
-        let response = await axios.get(`http://127.0.0.1:8000/comment/ZJ2tcji7O64/video`);
-        this.setState({
-            comments: response.data
-        });
-}
-    catch(ex) {
-        console.log ('Error in API Call!');
-    }
-} 
-
-    loadNewVid = (vid) =>{
-        this.setState({
-            video: vid
-        })
-        this.titleAndDescription()
-    }
     async titleAndDescription(){
         let response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${this.state.video}&key=AIzaSyByYNis8DwlkG0UZrKcxhZFdjJTZ4HTEj0&part=snippet,statistics`)
         this.setState({
             title:response.data.items[0].snippet.title,
             description:response.data.items[0].snippet.description
         })
-
+    
     }
 
-    
-
+    async filterComments(video){
+        try{
+            let response = await axios.get(`http://127.0.0.1:8000/comment/ZJ2tcji7O64/video`);
+            this.setState({
+                comments: response.data
+            });
+    }
+        catch(ex) {
+            console.log ('Error in API Call!');
+        }
+    } 
     createComment=(newComment)=>{axios.post('http://127.0.0.1:8000/comment/',newComment)}
 
 
