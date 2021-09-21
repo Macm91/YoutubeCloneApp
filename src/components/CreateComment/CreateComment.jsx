@@ -1,35 +1,21 @@
-import React, { Component } from "react";
-import { useState } from "react/cjs/react.development";
+import React, { useState, useEffect } from "react";
 // import './CreateForm.css'
 
 
 const CreateComment=(props)=>{
     const [comment, setComment] = useState(['']);
-    const [video, setVideo] = useState (props.video);
+    const [video, setVideo] = useState ();
     const [likes, setLikes] = useState (0);
     const [dislikes, setDislikes] = useState (0);
 
-
-    // class CreateComment extends Component{
-    //     constructor (props){
-    //         super(props);
-    //         this.state = {
-    //             video: this.props.video,
-    //             comment: '',
-    //             likes: 0,
-    //             dislikes: 0
-    //         }
-    //     }
+    useEffect(() => {
+        setVideo(props.video)
+    },[props]);
 
     const handleChange= (event) => {
         setComment (event.target.value);
    }
 
-    //    handleChange= (event) => {
-    //     comment.setState ({
-    //         [event.target.name]: event.target.value,
-    //     });
-    // }
 
 
    const handleSubmit = (event) => {
@@ -45,7 +31,7 @@ const CreateComment=(props)=>{
            <form onSubmit= {handleSubmit}>
                <label></label>
                <input name="comment" onChange={handleChange} placeholder="Comment"/>
-               <button type="submit">Create Comment</button>
+               <button type="submit">Create Comment</button><hr />
                {/* could also potentially add a button here to cancel & empty input */}
            </form>
            </footer>
