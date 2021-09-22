@@ -10,6 +10,7 @@ const RelatedVideos = (props) =>{
     const [showTable, setShowTable] = useState(false)
 
     async function handleClick(props){
+        console.log(props.video)
         let response
         response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.video}&type=video&key=AIzaSyByYNis8DwlkG0UZrKcxhZFdjJTZ4HTEj0&part=snippet&maxResults=5`)
         .then(response =>  { setVideoData(response.data.items)})
@@ -20,6 +21,9 @@ const RelatedVideos = (props) =>{
         if (videoData !== "") setShowTable(true)
     },[videoData])
     
+    useEffect(() =>{
+
+    },[props.video])
 
     async function renderNew(vid){
         await props.newLoad(vid.videoId)

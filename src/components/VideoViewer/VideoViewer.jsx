@@ -21,28 +21,17 @@ class VideoViewer extends Component {
          }
     }
 
+    
 
     componentDidMount(){
         this.filterComments();
         this.titleAndDescription()
     }
 
-    // async getComments (){
-    //     try{
-    //         let response = await axios.get('http://127.0.0.1:8000/comment/');
-    //         this.setState({
-    //             comments: response.data
-    //         });
-    // }
-    //     catch(ex) {
-    //         console.log ('Error in API Call!');
-    //     }
-    // } 
-
 
     async filterComments(video){
     try{
-        let response = await axios.get(`http://127.0.0.1:8000/comment/${this.state.video}/video`);
+        let response = await axios.get(`http://127.0.0.1:8000/comment/${this.state.video}/video/`);
         this.setState({
             comments: response.data
         });
@@ -51,8 +40,8 @@ class VideoViewer extends Component {
         console.log ('Error in API Call!');
     }
 } 
-
     loadNewVid = (vid) =>{
+        console.log("Vid param: ", vid)
         this.setState({
             video: vid
         }, () => this.titleAndDescription())
@@ -69,7 +58,9 @@ class VideoViewer extends Component {
 
     
 
-    createComment=(newComment)=>{axios.post('http://127.0.0.1:8000/comment/',newComment)}
+    createComment=(newComment)=>{
+        axios.post('http://127.0.0.1:8000/comment/',newComment)
+        this.filterComments()}
 
 
     render(){ 
@@ -82,8 +73,11 @@ class VideoViewer extends Component {
                 frameborder="0"></iframe>
                 <h4>{this.state.title}</h4><br /><p>{this.state.description}</p>
                 <h3>Comments</h3><hr />
+                {console.log("Before Create comp call: ",this.state.video)}
                 <CreateComment createComment = {this.createComment} video={this.state.video}/>
+                {console.log(this.state.video)}
                 <DisplayComments video={this.state.video}/>  
+                {console.log(this.state.video)}
                 <RelatedVideos video = {this.state.video} newLoad = {this.loadNewVid}/>      
             </div>
            
