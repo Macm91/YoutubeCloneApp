@@ -21,7 +21,7 @@ const DisplayComments=(props)=>{
     //     filterComment().then(filterReplies)
     // }
     async function updateComment(comment){ 
-        await axios.put(`http://127.0.0.1:8000/comment/${comment}/`)
+        await axios.put(`http://127.0.0.1:8000/comment/${(comment.id)}/`,comment).then(response => console.log(response))
     }
 
     // async function filterReplies(val){
@@ -31,17 +31,31 @@ const DisplayComments=(props)=>{
 
     const increment = (val)=>{
 
-        let commentUpdate = 
-            {
-                    "id":val.id,
-                    "video":val.video,
-                    "comment":val.comment,
-                    "likes":(val.like=+1),
-                    "dislikes":val.dislikes
-            }
+        let commentUpdate = {
+            
+                    id: val.id,
+                    video: val.video,
+                    comment: val.comment,
+                    likes: (val.likes=+1),
+                    dislikes: val.dislikes
+                }
         
         console.log("setComm")
         console.log (comm)
+        updateComment(commentUpdate);
+    }
+
+    const incrementDislikes = (val)=>{
+
+        let commentUpdate = {
+            
+                    id: val.id,
+                    video: val.video,
+                    comment: val.comment,
+                    likes: val.likes,
+                    dislikes: (val.dislikes=+1)
+                }
+        
         updateComment(commentUpdate);
     }
     
@@ -62,7 +76,7 @@ const DisplayComments=(props)=>{
     useEffect (()=>{
         filterComment(props.video)
         
-    }, [props])
+    }, [props, comments])
 
     
 
@@ -73,9 +87,10 @@ const DisplayComments=(props)=>{
                 comments.map((val, index)=> 
                 <tr key={index} className= "commentDisplay"> 
                 <th>{val.comment } </th>
-                <th><form type="button" onClick={()=> increment(val)} > Like {val.likes}</form></th>
+                <th><form type="button" onClick={()=> increment(val)} > Like! {val.likes}</form></th>
+                <th><form type="button" onClick={()=> incrementDislikes(val)} > Dislike! {val.dislikes}</form></th>
                 <th><form type = 'submit' onSubmit = {e => handleSubmit(e,val.id)} return false><input name = "reply" onChange={handleChange} placeholder="Reply" type='text'></input></form></th>
-                <tr><DisplayReplies val = {val.id} video = {props.video}/></tr>
+                <tr><DisplayReplies val = {val.id} theReply = {reply}/></tr>
                 </tr>)
                 }   
             </div>
