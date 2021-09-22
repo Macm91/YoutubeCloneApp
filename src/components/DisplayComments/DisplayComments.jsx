@@ -1,6 +1,7 @@
 import React, {useEffect, useState, Component} from "react";
 import axios from "axios";
 import DisplayReplies from "../DisplayReplies/DisplayReplies";
+import './DisplayComment.css';
 
 
 
@@ -85,13 +86,17 @@ const DisplayComments=(props)=>{
             <div className="commentTable">
                 {
                 comments.map((val, index)=> 
-                <tr key={index} className= "commentDisplay"> 
-                <th>{val.comment } </th>
-                <th><form type="button" onClick={()=> increment(val)} > Like! {val.likes}</form></th>
-                <th><form type="button" onClick={()=> incrementDislikes(val)} > Dislike! {val.dislikes}</form></th>
+                <table key={index} className="table table-sm">
+                <tr  className= "commentDisplay"> 
+
+                <tr>{val.comment} </tr>
+                    <th><form type="button" onClick={()=> increment(val)} > Like! {val.likes}</form></th>
+                    <th><form type="button" onClick={()=> incrementDislikes(val)} > Dislike! {val.dislikes}</form></th>
+                
                 <th><form type = 'submit' onSubmit = {e => handleSubmit(e,val.id)} return false><input name = "reply" onChange={handleChange} placeholder="Reply" type='text'></input></form></th>
                 <tr><DisplayReplies val = {val.id} theReply = {reply}/></tr>
-                </tr>)
+                </tr>
+                </table>)
                 }   
             </div>
         
