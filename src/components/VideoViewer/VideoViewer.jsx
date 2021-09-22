@@ -4,7 +4,7 @@ import CreateComment from "../CreateComment/CreateComment";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import DisplayComments from "../DisplayComments/DisplayComments";
 import TitleBar from "../TitleBar/TitleBar";
-
+// import VideoTitleDescription from "../VideoTitleDescription/VideoTitleDescription";
 
 
 class VideoViewer extends Component {
@@ -14,6 +14,7 @@ class VideoViewer extends Component {
             comments: [],
             video:'pfzx8CwndSE',
             comment: '',
+            replies: '',
             likes: 0,
             dislikes: 0,
             title: '',
@@ -25,9 +26,16 @@ class VideoViewer extends Component {
 
     componentDidMount(){
         this.filterComments();
+        this.filterReplies();
         this.titleAndDescription()
     }
 
+    async filterReplies(video){
+        let response = await axios.get(`http://127.0.0.1:8000/reply/`)
+        this.setState({
+            replies: response.data
+        })
+    }
 
     async filterComments(video){
     try{
@@ -56,8 +64,6 @@ class VideoViewer extends Component {
 
     }
 
-    
-
     createComment=(newComment)=>{
         axios.post('http://127.0.0.1:8000/comment/',newComment)
         this.filterComments()}
@@ -73,11 +79,8 @@ class VideoViewer extends Component {
                 frameborder="0"></iframe>
                 <h4>{this.state.title}</h4><br /><p>{this.state.description}</p>
                 <h3>Comments</h3><hr />
-                {console.log("Before Create comp call: ",this.state.video)}
                 <CreateComment createComment = {this.createComment} video={this.state.video}/>
-                {console.log(this.state.video)}
-                <DisplayComments video={this.state.video}/>  
-                {console.log(this.state.video)}
+                <DisplayComments video={this.state.video} replies = {this.state.replies}/>  
                 <RelatedVideos video = {this.state.video} newLoad = {this.loadNewVid}/>      
             </div>
            
