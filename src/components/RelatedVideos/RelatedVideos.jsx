@@ -36,10 +36,12 @@ const RelatedVideos = (props) =>{
             >
                 Related
             </button>
+            <div className="overflow-scroll">
                 {showTable &&
                     videoData.map((element) => <ul><img onClick = {() => renderNew(element.id)}src={element.snippet.thumbnails.default.url} alt="Thumbnail" width="120" height="90"/><h5>{element.snippet.title}</h5></ul>)
                         // mapp data into table.
                 }
+            </div>
         </div>
 
     )
