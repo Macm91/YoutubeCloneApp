@@ -14,7 +14,7 @@ const DisplayReplies = (props) => {
 
     useEffect(()=>{
         filterReplies()
-    },[replies])
+    },[replies+1])
 
 return(
     <div>
