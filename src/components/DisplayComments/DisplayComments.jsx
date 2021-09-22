@@ -83,20 +83,33 @@ const DisplayComments=(props)=>{
 
     return(
        
-            <div className="commentTable">
+            <div className="allComments" position-relative start-50 top-50>
                 {
                 comments.map((val, index)=> 
-                <table key={index} className="table table-sm">
-                <tr  className= "commentDisplay"> 
+                <div key={index} className="table table-sm">
+                <div  className= "commentDisplay"> 
 
-                <tr>{val.comment} </tr>
+            
+                <h4>{val.comment} </h4>
+                    <tr className="likes">
                     <th><form type="button" onClick={()=> increment(val)} > Like! {val.likes}</form></th>
                     <th><form type="button" onClick={()=> incrementDislikes(val)} > Dislike! {val.dislikes}</form></th>
+                    </tr>
                 
-                <th><form type = 'submit' onSubmit = {e => handleSubmit(e,val.id)} return false><input name = "reply" onChange={handleChange} placeholder="Reply" type='text'></input></form></th>
-                <tr><DisplayReplies val = {val.id} theReply = {reply}/></tr>
-                </tr>
-                </table>)
+                
+                <form className="reply" type = 'submit' onSubmit = {e => handleSubmit(e,val.id)} return false><input className="Reply" name = "reply" onChange={handleChange} placeholder="Reply" type='text'></input></form>
+                
+                
+                
+                
+                
+                
+                <p className="displayReplies"><DisplayReplies val = {val.id} theReply = {reply}/></p>
+                
+                
+                
+                </div>
+                </div>)
                 }   
             </div>
         

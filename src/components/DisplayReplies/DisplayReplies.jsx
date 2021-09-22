@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import './DisplayReplies.css'
 
 
 const DisplayReplies = (props) => {
@@ -17,8 +18,8 @@ const DisplayReplies = (props) => {
     },[replies])
 
 return(
-    <div>
-    {replies.map((element)=><tr>Replies: {element.reply}</tr>)}
+    <div className="replies">
+    {replies.map((element)=><tr> Reply: {element.reply}</tr>)}
     </div>
 )}
 export default DisplayReplies

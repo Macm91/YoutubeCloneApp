@@ -1,3 +1,28 @@
 .commentDisplay{
     color:whitesmoke
 }
+
+
+.displayReplies{
+    color: rgb(156, 156, 156);
+    position: relative;
+    margin-left: 30%;;
+}
+
+.allComments{
+    padding-left: 30%;
+}
+
+.reply{
+    padding-left: 20%;
+}
+
+.Reply{
+    background-color: rgb(81, 91, 100);
+    border-style: solid;
+    border-color: rgb(143, 142, 142);
+    border-radius: 10px;
+}
+.likes{
+    padding-left: 20%;
+}
