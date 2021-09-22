@@ -68,7 +68,7 @@ const DisplayComments=(props)=>{
 
     return(
        
-            <div>
+            <div className="commentTable">
                 {
                 comments.map((val, index)=> 
                 <tr key={index} className= "commentDisplay"> 

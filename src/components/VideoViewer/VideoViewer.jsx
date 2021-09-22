@@ -4,7 +4,7 @@ import CreateComment from "../CreateComment/CreateComment";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import DisplayComments from "../DisplayComments/DisplayComments";
 import TitleBar from "../TitleBar/TitleBar";
-// import VideoTitleDescription from "../VideoTitleDescription/VideoTitleDescription";
+import "./VideoViewer.css";
 
 
 class VideoViewer extends Component {
@@ -73,16 +73,35 @@ class VideoViewer extends Component {
         return ( 
             <div>
                 <TitleBar newLoad = {this.loadNewVid}/>
-            <div>
-                <iframe title= "videoViewer" id="ytplayer" type="text/html" width="640" height="360"
-                src={`https://www.youtube.com/embed/${this.state.video}`}
-                frameborder="0"></iframe>
-                <h4>{this.state.title}</h4><br /><p>{this.state.description}</p>
-                <h3>Comments</h3><hr />
+
+
+            <div className="mx viewer" >
+            <div className="container-fluid" >
+                   <div className="row" >
+                       <div className= "col">
+                            <iframe title= "videoViewer" id="ytplayer" type="text/html" width="640" height="360"
+                            src={`https://www.youtube.com/embed/${this.state.video}`}
+                            frameborder="0"></iframe>
+                            <h4>{this.state.title}</h4>
+                            <br/>
+                            <p>{this.state.description}</p>
+                        </div>
+
+                        <div className="col border w-auto h-20 overflow-scroll">
+                            <RelatedVideos video = {this.state.video} newLoad = {this.loadNewVid}/>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                
+                
+                <h3 className="commentHeading">Comments</h3><hr />
+                
                 <CreateComment createComment = {this.createComment} video={this.state.video}/>
+        
                 <DisplayComments video={this.state.video} replies = {this.state.replies}/>  
-                <RelatedVideos video = {this.state.video} newLoad = {this.loadNewVid}/>      
-            </div>
+                     
+            
            
             </div>
         )

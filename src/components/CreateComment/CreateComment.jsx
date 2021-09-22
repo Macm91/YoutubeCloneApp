@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react/cjs/react.development";
+import './CreateComment.css'
 
 
 
@@ -28,14 +29,12 @@ const CreateComment=(props)=>{
 
     //    render() { 
        return ( 
-           <footer>
-           <form onSubmit= {handleSubmit}>
-               <label></label>
-               <input name="comment" onChange={handleChange} placeholder="Comment"/>
-               <button type="submit">Create Comment</button><hr />
-               {/* could also potentially add a button here to cancel & empty input */}
+         
+           <form onSubmit= {handleSubmit} className="submitComment">
+               <input className="input" name="comment" onChange={handleChange} placeholder="Comment"/>
+               {/* <br/> */}
+               <button className="createButton" type="submit">Create Comment</button><hr /> 
            </form>
-           </footer>
         );
 
 }
