@@ -36,12 +36,26 @@ const DisplayComments=(props)=>{
                     id: val.id,
                     video: val.video,
                     comment: val.comment,
-                    likes: (val.like=+1),
+                    likes: (val.likes=+1),
                     dislikes: val.dislikes
                 }
         
         console.log("setComm")
         console.log (comm)
+        updateComment(commentUpdate);
+    }
+
+    const incrementDislikes = (val)=>{
+
+        let commentUpdate = {
+            
+                    id: val.id,
+                    video: val.video,
+                    comment: val.comment,
+                    likes: val.likes,
+                    dislikes: (val.dislikes=+1)
+                }
+        
         updateComment(commentUpdate);
     }
     
@@ -73,7 +87,8 @@ const DisplayComments=(props)=>{
                 comments.map((val, index)=> 
                 <tr key={index} className= "commentDisplay"> 
                 <th>{val.comment } </th>
-                <th><form type="button" onClick={()=> increment(val)} > Like {val.likes}</form></th>
+                <th><form type="button" onClick={()=> increment(val)} > Like! {val.likes}</form></th>
+                <th><form type="button" onClick={()=> incrementDislikes(val)} > Dislike! {val.dislikes}</form></th>
                 <th><form type = 'submit' onSubmit = {e => handleSubmit(e,val.id)} return false><input name = "reply" onChange={handleChange} placeholder="Reply" type='text'></input></form></th>
                 <tr><DisplayReplies val = {val.id} theReply = {reply}/></tr>
                 </tr>)
