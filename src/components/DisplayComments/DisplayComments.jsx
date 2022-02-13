@@ -2,7 +2,7 @@ import React, {useEffect, useState, Component} from "react";
 import axios from "axios";
 import DisplayReplies from "../DisplayReplies/DisplayReplies";
 import './DisplayComment.css';
-import './icons/thumbsdown.png'
+// import './icons/thumbsdown.png'
 
 
 
@@ -19,17 +19,11 @@ const DisplayComments=(props)=>{
     async function filterComment(video){
         await axios.get(`http://127.0.0.1:8000/comment/${props.video}/video/`).then(response=>{setComments(response.data)}) 
     }
-    // const startFilteredComments = () =>{
-    //     filterComment().then(filterReplies)
-    // }
+
     async function updateComment(comment){ 
         await axios.put(`http://127.0.0.1:8000/comment/${(comment.id)}/`,comment).then(response => console.log(response))
     }
-
-    // async function filterReplies(val){
-    //     console.log(val)
-    //     await axios.get(`http://127.0.0.1:8000/comment/${val}/reply`).then(response => setReplies(response.data.reply))
-    // }    
+   
 
     const increment = (val)=>{
 
@@ -112,12 +106,13 @@ const DisplayComments=(props)=>{
                 
                 
                 
-                <p className="displayReplies"><DisplayReplies val = {val.id} theReply = {reply}/></p>
+                <form className="displayReplies" type="button" onclick= {replies} val = {val.id} theReply = {reply}><DisplayReplies val = {val.id} theReply = {reply}/></form>
                 
                 
                 
                 </div>
-                </div>)
+                </div>
+                )
                 }   
             </div>
         

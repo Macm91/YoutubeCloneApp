@@ -2,6 +2,15 @@
     position: relative;
 }
 
+/* #youtubeIcon{
+    text-align: center;
+    align-content: center;
+} */
+
+#youtubeText{
+    font-size: 5em;
+}
+
 .mx header {
     background-color: rgba(31, 31, 31, 0.646);
     margin-left: 0;
@@ -24,6 +33,6 @@
 } */
 
 
-.position-absolute d-inline-block border {
-    
+.bi bi-play-btn{
+    color:red;
 }
